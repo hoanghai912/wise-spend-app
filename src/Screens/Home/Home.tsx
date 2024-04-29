@@ -15,6 +15,7 @@ export const Home = (props: IHomeProps) => {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
+      <Text>ASD</Text>
       {isLoading ? (
         <HStack space={2} justifyContent="center">
           <Spinner accessibilityLabel="Loading posts" />

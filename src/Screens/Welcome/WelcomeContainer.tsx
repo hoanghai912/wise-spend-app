@@ -6,7 +6,8 @@ import { RootScreens } from "..";
 
 type WelcomeScreenNavigatorProps = NativeStackScreenProps<
   RootStackParamList,
-  RootScreens.WELCOME
+  RootScreens.WELCOME,
+  RootScreens.ONBOARDING
 >;
 
 export const WelcomeContainer = ({
@@ -18,3 +19,4 @@ export const WelcomeContainer = ({
 
   return <Welcome onNavigate={onNavigate} />;
 };
+
