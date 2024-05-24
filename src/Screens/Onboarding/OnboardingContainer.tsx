@@ -1,8 +1,7 @@
 import { Onboarding } from "./Onboarding";
 import React, { useState, useEffect } from "react";
-import { useLazyGetUserQuery } from "@/Services";
 
-export const OnboardingContainer = () => {
+export const OnboardingContainer = ({navigation}:any) => {
 
-  return <Onboarding />;
+  return <Onboarding navigation={navigation}/>;
 };

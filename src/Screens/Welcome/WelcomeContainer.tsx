@@ -5,9 +5,10 @@ import { RootStackParamList } from "@/Navigation";
 import { RootScreens } from "..";
 
 type WelcomeScreenNavigatorProps = NativeStackScreenProps<
-  RootStackParamList,
-  RootScreens.WELCOME,
-  RootScreens.ONBOARDING
+  RootStackParamList
+  // RootScreens.WELCOME,
+  // RootScreens.ONBOARDING
+  // RootScreens.LOGIN,
 >;
 
 export const WelcomeContainer = ({

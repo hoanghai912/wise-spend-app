@@ -8,10 +8,11 @@ import Logo from "../../../assets/logo.svg"
 import IconFB from "../../../assets/fb-icon.svg"
 import IconGG from "../../../assets/gg-icon.svg"
 import IconApple from "../../../assets/apple-icon.svg"
+import { RootScreens } from "..";
 
 
 
-export const Onboarding = () => {
+export const Onboarding = ({navigation}:any) => {
   // const image = require('../../../assets/logo.svg');
   return (
     <View className="flex-1 bg-[#F3EEEA] items-center">
@@ -29,11 +30,15 @@ export const Onboarding = () => {
 
         <View style={styles.button_wrapper} className="mt-5">
 
-          <TouchableOpacity style={styles.button_custom} className="h-10">
+          <TouchableOpacity style={styles.button_custom} className="h-10"
+            onPress={() => navigation.navigate(RootScreens.LOGIN, {isSignup:false})}
+          >
             <Text style={styles.text_component} className="font-semibold">Sign In</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button_custom} className="h-10">
+          <TouchableOpacity style={styles.button_custom} className="h-10"
+            onPress={() => navigation.navigate(RootScreens.LOGIN, {isSignup:true})}
+          >
             <Text style={styles.text_component} className="font-semibold">Sign Up</Text>
           </TouchableOpacity >
         </View>
