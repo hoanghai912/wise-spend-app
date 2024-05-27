@@ -44,7 +44,7 @@ export const Login = ({ navigation }: any) => {
 
         {/* Button Login */}
         <TouchableOpacity style={styles.button_custom} className="h-10 w-10/12 mt-5"
-          onPress={() => ""}
+          onPress={() => navigation.navigate(RootScreens.HOMESCREEN)}
         >
           <Text style={styles.text_component} className="font-semibold">Sign In</Text>
         </TouchableOpacity>

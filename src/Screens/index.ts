@@ -3,4 +3,5 @@ export enum RootScreens {
   WELCOME = "Welcome",
   ONBOARDING = "ONBOARDING",
   LOGIN = "LOGIN",
+  HOMESCREEN = "HOMESCREEN",
 }
