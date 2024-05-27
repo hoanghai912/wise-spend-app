@@ -10,6 +10,11 @@ export const HomeScreen = ({ navigation }: any) => {
       <Text>
         HomeScreen
       </Text>
+
+      <View style={style.navbar}>
+
+        <Navbar navigation={navigation} screen="HomeScreen"/>
+      </View>
     </View>
 
   )
@@ -22,7 +27,7 @@ const style = StyleSheet.create({
   },
   navbar: {
     position: "absolute",
-    bottom: 0,
+    bottom: -2,
   }
 
 })
