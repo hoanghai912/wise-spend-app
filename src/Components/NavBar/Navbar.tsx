@@ -12,6 +12,7 @@ import IconHomeActive from "../../../assets/icon_component/home-active.svg"
 import IconStatisticActive from "../../../assets/icon_component/statistic-active.svg"
 import IconPlanActive from "../../../assets/icon_component/plan-active.svg"
 import IconUserActive from "../../../assets/icon_component/user_profile-active.svg"
+import { RootScreens } from "@/Screens";
 
 export const Navbar = ({navigation, screen}: any) => {
     return (
@@ -29,28 +30,40 @@ export const Navbar = ({navigation, screen}: any) => {
                 {/* List of functional */}
                 <View style={styles.functionContainer}>
                     
-                    <View style={{alignItems:"center"}}>
+                    <TouchableOpacity style={{alignItems:"center"}}
+                        onPress={() => navigation.navigate(RootScreens.HOMESCREEN)}
+                        activeOpacity={1}
+                    >
                         {screen === "HomeScreen" ? <IconHomeActive /> : <IconHome />}
                         <Text style={[styles.mini_description, {...screen === "HomeScreen" ? {color: "#79B4B7"} : {}}]}>Home</Text>
-                    </View>
+                    </TouchableOpacity>
 
-                    <View style={{alignItems:"center"}}>
+                    <TouchableOpacity style={{alignItems:"center"}}
+                        onPress={() => navigation.navigate(RootScreens.STATISTICS)}
+                        activeOpacity={1}
+                    >
                         {screen === "StatisticScreen" ? <IconStatisticActive /> : <IconStatistic />}
                         <Text style={[styles.mini_description, {...screen === "StatisticScreen" ? {color: "#79B4B7"} : {}}]}>Statistic</Text>
-                    </View>
+                    </TouchableOpacity>
                     
                     {/* Dummy component */} 
                     <View></View>
 
-                    <View style={{alignItems:"center"}}>
+                    <TouchableOpacity style={{alignItems:"center"}}
+                        onPress={() => navigation.navigate(RootScreens.PLAN)}
+                        activeOpacity={1}    
+                    >
                         {screen === "PlanScreen" ? <IconPlanActive /> : <IconPlan />}
                         <Text style={[styles.mini_description, {...screen === "PlanScreen" ? {color: "#79B4B7"} : {}}]}>Share</Text>
-                    </View>
+                    </TouchableOpacity>
 
-                    <View style={{alignItems:"center"}}>
-                        {screen === "ProfileScreen" ? <IconUserActive /> : <IconUser />}
-                        <Text style={[styles.mini_description, {...screen === "ProfileScreen" ? {color: "#79B4B7"} : {}}]}>User</Text>
-                    </View>
+                    <TouchableOpacity style={{alignItems:"center"}}
+                        onPress={() => navigation.navigate(RootScreens.USER)}
+                        activeOpacity={1}
+                    >
+                        {screen === "UserScreen" ? <IconUserActive /> : <IconUser />}
+                        <Text style={[styles.mini_description, {...screen === "UserScreen" ? {color: "#79B4B7"} : {}}]}>User</Text>
+                    </TouchableOpacity>
 
                 </View>
 
@@ -85,4 +98,3 @@ const styles = StyleSheet.create({
         textAlign:"center",
     },
 });
-  

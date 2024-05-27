@@ -8,6 +8,9 @@ import { RootScreens } from "@/Screens";
 import { OnboardingContainer } from "@/Screens/Onboarding";
 import { LoginContainer } from "@/Screens/Login";
 import { HomeScreenContainer } from "@/Screens/HomeScreen";
+import { StatisticScreenContainer } from "@/Screens/StatisticScreen";
+import { PlanScreenContainer } from "@/Screens/PlanScreen";
+import { UserScreenContainer } from "@/Screens/UserScreen";
 
 export type RootStackParamList = {
   [RootScreens.MAIN]: undefined;
@@ -15,6 +18,9 @@ export type RootStackParamList = {
   [RootScreens.ONBOARDING]: undefined;
   [RootScreens.LOGIN]: undefined;
   [RootScreens.HOMESCREEN]: undefined;
+  [RootScreens.STATISTICS]: undefined;
+  [RootScreens.PLAN]: undefined;
+  [RootScreens.USER]: undefined;
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -45,6 +51,30 @@ const ApplicationNavigator = () => {
         <RootStack.Screen
           name={RootScreens.HOMESCREEN}
           component={HomeScreenContainer}
+          options={{
+            animation:"none",
+          }}
+        />
+        <RootStack.Screen
+          name={RootScreens.STATISTICS}
+          component={StatisticScreenContainer}
+          options={{
+            animation:"none",
+          }}
+        />
+        <RootStack.Screen
+          name={RootScreens.PLAN}
+          component={PlanScreenContainer}
+          options={{
+            animation:"none",
+          }}
+        />
+        <RootStack.Screen
+          name={RootScreens.USER}
+          component={UserScreenContainer}
+          options={{
+            animation:"none",
+          }}
         />
 
       </RootStack.Navigator>
