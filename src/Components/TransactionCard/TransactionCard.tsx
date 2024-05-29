@@ -57,7 +57,7 @@ export const TransactionCard = ({title, description, amount}:any) => {
             </View>
             <View style={styles.text_container}>
                 <Text style={styles.text_title}>{title}</Text>
-                <Text style={styles.text_description}>{description}</Text>
+                {description && <Text style={styles.text_description}>{description}</Text>}
             </View>
 
             <View style={styles.number_container}>

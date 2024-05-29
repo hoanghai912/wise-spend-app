@@ -22,6 +22,42 @@ export const ChooseCategory = ({ navigation }: any) => {
     const categories_expense = ["House", "Bill", "Travel", "Health", "Shopping", "Food & Drink",
         "Entertainment"]
 
+    const categories_income = ["Salary", "Other Income"]
+
+    const [selectedTab, setSelectedTab] = useState("Expense")
+    const [categories, setCategories] = useState(categories_expense)
+
+    const handleChangeCategoryType = (type:any) => {
+        if (type === "Expense") {
+            setSelectedTab("Expense")
+            setCategories(categories_expense)
+        } else {
+            setSelectedTab("Income")
+            setCategories(categories_income)
+        }
+    }
+
+    const tabBar = () => {
+        return (
+            <View className="bg-white h-[46] w-[100%] items-center justify-center">
+                <View className="h-[34] border-[#79B4B7] flex-row w-[90%] border-[1px] items-center justify-around rounded-[20px]">
+                    <TouchableOpacity className="w-[50%] py-[5]"
+                        style={selectedTab === "Expense" ? styles.selectedTab : {}}
+                        onPress={() => handleChangeCategoryType("Expense")}
+                    >
+                        <Text className="text-center" style={[styles.tabText, selectedTab === "Expense" ? styles.selectedTabText : {}]}>Expense</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity className="w-[50%] py-[5]"
+                        style={selectedTab === "Income" ? styles.selectedTab : {}}
+                        onPress={() => handleChangeCategoryType("Income")}
+                    >
+                        <Text className="text-center" style={[styles.tabText, selectedTab === "Income" ? styles.selectedTabText : {}]}>Income</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        )
+    }
+
     const renderSwitch = (title: any) => {
         switch (title) {
             case "House":
@@ -68,16 +104,18 @@ export const ChooseCategory = ({ navigation }: any) => {
                 </View>
             </View>
 
+            {tabBar()}
+
             <View style={styles.bodyContainer}>
-                {categories_expense.map((category, index) => (
-                    <View key={index} style={{width:"90%"}}>
-                        <TouchableOpacity style={{flexDirection:"row", alignItems:"center"}}
-                            onPress={() => navigation.navigate(RootScreens.ADDTRANSACTION, {category:category})}
+                {categories.map((category, index) => (
+                    <View key={index} style={{ width: "90%" }}>
+                        <TouchableOpacity style={{ flexDirection: "row", alignItems: "center" }}
+                            onPress={() => navigation.navigate(RootScreens.ADDTRANSACTION, { category: category })}
                         >
                             {renderSwitch(category)}
-                            <Text style={{fontSize:18, fontWeight:"500", color:"#5E5E5E", paddingLeft:10}}>{category}</Text>
+                            <Text style={{ fontSize: 18, fontWeight: "500", color: "#5E5E5E", paddingLeft: 10 }}>{category}</Text>
                         </TouchableOpacity>
-                        <View style={{ height: 1, backgroundColor: "#5E5E5E", marginVertical:10 }}></View>
+                        <View style={{ height: 1, backgroundColor: "#5E5E5E", marginVertical: 10 }}></View>
                     </View>
                 ))}
 
@@ -96,6 +134,20 @@ const styles = StyleSheet.create({
         backgroundColor: "#F3EEEA",
         height: "100%",
         paddingTop: 20,
-        alignItems:"center",
+        alignItems: "center",
+    },
+    selectedTab: {
+        backgroundColor: '#E0F7FA',
+        borderRadius: 20,
+    },
+    tabText: {
+        color: '#9D9D9D',
+        fontSize: 14,
+        fontWeight: "500",
+        lineHeight: 24,
+    },
+    selectedTabText: {
+        color: '#79B4B7',
+        fontWeight: 'bold',
     },
 })
