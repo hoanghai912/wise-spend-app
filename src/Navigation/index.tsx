@@ -11,6 +11,8 @@ import { HomeScreenContainer } from "@/Screens/HomeScreen";
 import { StatisticScreenContainer } from "@/Screens/StatisticScreen";
 import { PlanScreenContainer } from "@/Screens/PlanScreen";
 import { UserScreenContainer } from "@/Screens/UserScreen";
+import { AddTransactionContainer } from "@/Screens/AddTransaction";
+import { ChooseCategory } from "@/Screens/AddTransaction/ChooseCategory";
 
 export type RootStackParamList = {
   [RootScreens.MAIN]: undefined;
@@ -21,6 +23,8 @@ export type RootStackParamList = {
   [RootScreens.STATISTICS]: undefined;
   [RootScreens.PLAN]: undefined;
   [RootScreens.USER]: undefined;
+  [RootScreens.ADDTRANSACTION]: undefined;
+  [RootScreens.CHOOSECATEGORY]: undefined;
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -74,6 +78,20 @@ const ApplicationNavigator = () => {
           component={UserScreenContainer}
           options={{
             animation:"none",
+          }}
+        />
+        <RootStack.Screen
+          name={RootScreens.ADDTRANSACTION}
+          component={AddTransactionContainer}
+          options={{
+            animation:"slide_from_bottom",
+          }}
+        />
+        <RootStack.Screen
+          name={RootScreens.CHOOSECATEGORY}
+          component={ChooseCategory}
+          options={{
+            animation:"slide_from_right",
           }}
         />
 

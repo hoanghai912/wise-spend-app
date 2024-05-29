@@ -23,7 +23,7 @@ export const Navbar = ({navigation, screen}: any) => {
                     width={'100%'}
                 />
                 {/* Add button in center*/}
-                <TouchableOpacity style={styles.addButton}>
+                <TouchableOpacity style={styles.addButton} onPress={() => navigation.navigate(RootScreens.ADDTRANSACTION)}>
                     <AddButton />
                 </TouchableOpacity>
 
