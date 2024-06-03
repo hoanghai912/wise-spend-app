@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, TextInput } from "react-native";
 import Logo from "../../../assets/logo.svg"
 import IconEnvelope from "../../../assets/icon_component/envelope.svg"
@@ -11,6 +11,29 @@ import { RootScreens } from "..";
 
 
 export const Login = ({ navigation }: any) => {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  
+  const handleLogin = async (email:any, password:any) => {
+
+    fetch("http://192.168.111.32:3000/user/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    })
+      .then(res => res.json())
+      .then(res => {
+        if (res.message === "successful") {
+          navigation.navigate(RootScreens.HOMESCREEN)
+        }
+      })
+
+  }
 
   return (
     <View className="flex bg-[#F3EEEA] items-center h-[100%]">
@@ -23,7 +46,7 @@ export const Login = ({ navigation }: any) => {
       <View className="relative top-11 w-10/12 h-auto bg-white rounded-[20px] flex justify-center items-center justify-around py-7">
         <View className="w-10/12 gap-y-3">
           <View className="flex-row items-center">
-            <TextInput style={styles.text_input} placeholder="Email"></TextInput>
+            <TextInput style={styles.text_input} placeholder="Email" onChange={(e) => setEmail(e.nativeEvent.text)}></TextInput>
             <IconEnvelope
               width={16}
               height={16}
@@ -32,7 +55,7 @@ export const Login = ({ navigation }: any) => {
             />
           </View>
           <View className="flex-row items-center" >
-            <TextInput style={styles.text_input} placeholder="Password" secureTextEntry={true}></TextInput>
+            <TextInput style={styles.text_input} placeholder="Password" secureTextEntry={true} onChange={(e) => setPassword(e.nativeEvent.text)}></TextInput>
             <IconLock
               width={16}
               height={16}
@@ -44,7 +67,8 @@ export const Login = ({ navigation }: any) => {
 
         {/* Button Login */}
         <TouchableOpacity style={styles.button_custom} className="h-10 w-10/12 mt-5"
-          onPress={() => navigation.navigate(RootScreens.HOMESCREEN)}
+          // onPress={() => navigation.navigate(RootScreens.HOMESCREEN)}
+          onPress={() => handleLogin(email, password)}
         >
           <Text style={styles.text_component} className="font-semibold">Sign In</Text>
         </TouchableOpacity>

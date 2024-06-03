@@ -2,13 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const slice = createSlice({
   name: "transaction",
-  initialState: {data:[
-    {
-      title: "Bill",
-      description: "Snacks",
-      amount: "5,500,000",
-    },
-  ]},
+  initialState: {data:[]},
   reducers: {
     add: (state:any, { payload: props  }) => {
       state.data = [...state.data, props]

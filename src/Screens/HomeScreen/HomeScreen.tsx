@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { StyleSheet, View, Text, StatusBar, ScrollView } from "react-native"
+import { StyleSheet, View, Text, StatusBar, ScrollView, BackHandler } from "react-native"
 
 import { Navbar } from "@/Components"
 import { TransactionCard } from "@/Components";
@@ -50,6 +50,11 @@ export const HomeScreen = ({ navigation }: any) => {
   useEffect(() => {
     setDataSample(selector)
   }, [selector])
+
+  // useEffect(() => {
+  //   const backHandler = BackHandler.addEventListener('hardwareBackPress', () => true)
+  //   return () => backHandler.remove()
+  // }, [])
 
   const data_sample = dataSample
   return (
