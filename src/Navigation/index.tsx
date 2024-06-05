@@ -13,6 +13,8 @@ import { PlanScreenContainer } from "@/Screens/PlanScreen";
 import { UserScreenContainer } from "@/Screens/UserScreen";
 import { AddTransactionContainer } from "@/Screens/AddTransaction";
 import { ChooseCategory } from "@/Screens/AddTransaction/ChooseCategory";
+import { ChooseCategory as EditChooseCategory } from "@/Screens/EditTransaction/ChooseCategory";
+import { EditTransactionContainer } from "@/Screens/EditTransaction";
 
 export type RootStackParamList = {
   [RootScreens.MAIN]: undefined;
@@ -25,6 +27,8 @@ export type RootStackParamList = {
   [RootScreens.USER]: undefined;
   [RootScreens.ADDTRANSACTION]: undefined;
   [RootScreens.CHOOSECATEGORY]: undefined;
+  [RootScreens.EDITTRANSACTION]: undefined;
+  [RootScreens.EDITCHOOSECATEGORY]: undefined;
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -90,6 +94,20 @@ const ApplicationNavigator = () => {
         <RootStack.Screen
           name={RootScreens.CHOOSECATEGORY}
           component={ChooseCategory}
+          options={{
+            animation:"slide_from_right",
+          }}
+        />
+        <RootStack.Screen
+          name={RootScreens.EDITTRANSACTION}
+          component={EditTransactionContainer}
+          options={{
+            animation:"slide_from_bottom",
+          }}
+        />
+        <RootStack.Screen
+          name={RootScreens.EDITCHOOSECATEGORY}
+          component={EditChooseCategory}
           options={{
             animation:"slide_from_right",
           }}

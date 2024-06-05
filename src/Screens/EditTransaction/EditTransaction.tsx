@@ -22,22 +22,32 @@ import { CalculatorInput } from 'react-native-calculator'
 import { RootScreens } from ".."
 
 import { useSelector, useDispatch } from 'react-redux'
-import { add as addTransaction, replaceAllData } from "@/Store/reducers/transaction"
+import { add as addTransaction, updateTransaction, deleteTransaction } from "@/Store/reducers/transaction"
+import { addPreData } from "@/Store/reducers"
 
 
-export const AddTransaction = ({ navigation, props }: any) => {
+export const EditTransaction = ({ navigation, props }: any) => {
     const URL_API = "http://192.168.91.203:3000"
     const dispatch = useDispatch()
     const user_id = useSelector((state: any) => state.user.user_id)
-
-    const [valueAmount, setValueAmount] = useState(0)
-    const [note, setNote] = useState('')
+    // const preData = useSelector((state: any) => state.predatatransaction.data)
+    // console.log(preData)
+    // console.log(props)
+    const [idTransaction, setIdTransaction] = useState(props._id.toString())
+    const [valueAmount, setValueAmount] = useState(props.amount? props.amount : 0)
+    const [note, setNote] = useState(props.description? props.description : "")
     const [category, setCategory] = useState('');
     useEffect(() => {
         if (props) setCategory(props.category)
     }, [props?.category])
 
-    const [date, setDate] = useState(new Date());
+    useEffect(() => {
+        if (props._id) {
+            dispatch(addPreData(props))
+        }
+    }, [])
+
+    const [date, setDate] = useState(props.date ? new Date(props.date) : new Date());
     const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
     const showDatePicker = () => {
@@ -146,8 +156,8 @@ export const AddTransaction = ({ navigation, props }: any) => {
 
             // dispatch(addTransaction(parameters));
 
-            fetch(`${URL_API}/transaction`, {
-                method: "POST",
+            fetch(`${URL_API}/transaction/${idTransaction}`, {
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -162,19 +172,26 @@ export const AddTransaction = ({ navigation, props }: any) => {
                 .then(res => res.json())
                 .then(res => {
                     // console.log(res)
-                    if (res.message === "successful") {
-                        // dispatch(addTransaction(parameters));
-                        fetch(`${URL_API}/transaction/user_id/${user_id}`)
-                            .then(res2 => res2.json())
-                            .then(res2 => {
-                                dispatch(replaceAllData(res2))
-                            })
-                    }
+                    // if (res.message === "successful") {
+                    dispatch(updateTransaction(parameters[0]));
+                        
+                    // }
                 })
 
             navigation.goBack()
         }
     }
+
+    const handleDelete = (_id:string) => {
+        fetch(`${URL_API}/transaction/${_id}`, {
+            method: "DELETE",
+        })
+        
+        dispatch(deleteTransaction({_id: _id}))
+        navigation.goBack()
+
+    }
+
     return (
         <View style={styles.container}>
             <StatusBar
@@ -189,11 +206,20 @@ export const AddTransaction = ({ navigation, props }: any) => {
 
                             <BracketWhite />
                         </TouchableOpacity>
-                        <Text style={{ fontSize: 20, color: "white", fontWeight: "500" }}>Add Transaction</Text>
+                        <Text style={{ fontSize: 20, color: "white", fontWeight: "500" }}>Edit Transaction</Text>
                     </View>
+
+                    {/* Delete button */}
+                    <TouchableOpacity style={{ borderWidth: 2, borderColor: "red", borderRadius: 16, paddingHorizontal: 10, paddingVertical: 5 }}
+                        onPress={() => handleDelete(idTransaction)}
+                    >
+                        <Text className="color-[#ff0000]">Delete</Text>
+                    </TouchableOpacity>
+
+                    {/* Save button */}
                     <TouchableOpacity style={{ borderWidth: 2, borderColor: "white", borderRadius: 16, paddingHorizontal: 10, paddingVertical: 5 }}
                         onPress={() => handleSave([{
-
+                            _id: idTransaction,
                             category: category
                             , amount: valueAmount
                             , description: note
@@ -203,6 +229,8 @@ export const AddTransaction = ({ navigation, props }: any) => {
                     >
                         <Text className="color-white">Save</Text>
                     </TouchableOpacity>
+
+                    
                 </View>
             </View>
 
@@ -210,7 +238,7 @@ export const AddTransaction = ({ navigation, props }: any) => {
                 <View style={{ left: "5%" }}>
                     <Text style={{ fontSize: 16, fontWeight: "500", color: "#5E5E5E", paddingBottom: 8 }}>Category</Text>
                     <TouchableOpacity style={[styles.text_input, styles.chooseCategory, category !== "" ? { backgroundColor: "#F3EEEA" } : {}]}
-                        onPress={() => navigation.navigate(RootScreens.CHOOSECATEGORY)}
+                        onPress={() => navigation.navigate(RootScreens.EDITCHOOSECATEGORY)}
                     >
                         {category === "" ? <Text style={{ color: "#9D9D9D" }}>Choose Category</Text> : renderSwitch(category)}
                         {category === "" && <BracketGray
@@ -250,6 +278,7 @@ export const AddTransaction = ({ navigation, props }: any) => {
                     <TextInput style={styles.text_input}
                         placeholder="Add note"
                         onChange={(text) => setNote(text.nativeEvent.text)}
+                        value={note}
                     ></TextInput>
                 </View>
 

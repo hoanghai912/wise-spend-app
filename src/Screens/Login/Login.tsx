@@ -9,14 +9,18 @@ import IconGG from "../../../assets/gg-icon.svg"
 import IconApple from "../../../assets/apple-icon.svg"
 import { RootScreens } from "..";
 
+import { useDispatch } from 'react-redux'
+import { addUserId } from "@/Store/reducers/user"
 
 export const Login = ({ navigation }: any) => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
+
+  const dispatch = useDispatch()
   
   const handleLogin = async (email:any, password:any) => {
 
-    fetch("http://192.168.111.32:3000/user/login", {
+    fetch("http://192.168.91.203:3000/user/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -29,6 +33,7 @@ export const Login = ({ navigation }: any) => {
       .then(res => res.json())
       .then(res => {
         if (res.message === "successful") {
+          dispatch(addUserId(res._id))
           navigation.navigate(RootScreens.HOMESCREEN)
         }
       })

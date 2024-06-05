@@ -5,11 +5,25 @@ const slice = createSlice({
   initialState: {data:[]},
   reducers: {
     add: (state:any, { payload: props  }) => {
-      state.data = [...state.data, props]
+      state.data = [...state.data, ...props]
     },
+    updateTransaction: (state:any, { payload: props  }) => {
+      for (let i = 0; i < state.data.length; i++) {
+        if (state.data[i]._id.toString() === props._id) {
+          state.data[i] = props
+          break
+        }
+      }
+    },
+    deleteTransaction: (state:any, { payload: props  }) => {
+      state.data = state.data.filter((item:any) => item._id.toString() !== props._id.toString())
+    },
+    replaceAllData: (state:any, { payload: props  }) => {
+      state.data = props
+    }
   },
 });
 
-export const { add } = slice.actions;
+export const { add, updateTransaction, deleteTransaction, replaceAllData } = slice.actions;
 
 export const transactionReducers = slice.reducer;

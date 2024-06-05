@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 import IconHouse from "../../../assets/icon_component/house.svg";
 import IconBill from "../../../assets/icon_component/bill.svg";
@@ -13,9 +13,9 @@ import IconOtherIncome from "../../../assets/icon_component/other_income.svg";
 import IconExpense from "../../../assets/icon_component/expense.svg";
 import IconIncome from "../../../assets/icon_component/income.svg";
 
-export const TransactionCard = ({title, description, amount}:any) => {
+export const TransactionCard = ({category, description, amount}:any) => {
     const type = () => {
-        switch (title) {
+        switch (category) {
             case "Salary":
             case "Other Income":
             case "Income":
@@ -50,13 +50,17 @@ export const TransactionCard = ({title, description, amount}:any) => {
                 return <IconIncome />
     }}
 
+    const formatMoneyDisplay = (amount: number) => {
+        return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    }
+
     return (
         <View style={styles.container}>
             <View style={{marginLeft: 10}}>
-                {renderSwitch(title)}
+                {renderSwitch(category)}
             </View>
             <View style={styles.text_container}>
-                <Text style={styles.text_title}>{title}</Text>
+                <Text style={styles.text_title}>{category}</Text>
                 {description && <Text style={styles.text_description}>{description}</Text>}
             </View>
 
@@ -65,7 +69,7 @@ export const TransactionCard = ({title, description, amount}:any) => {
                     style={[{textAlign:"right", fontSize: 18, fontWeight: "600"}, type()==="income"?{color: "#79B4B7"}:{color: "#FD8A8A"}]}
                 >
                     {type()==="income"?"+": "-"}
-                    {amount}</Text>
+                    {formatMoneyDisplay(amount)}</Text>
             </View>
         </View>
     )
