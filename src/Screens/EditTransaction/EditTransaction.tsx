@@ -27,7 +27,8 @@ import { addPreData } from "@/Store/reducers"
 
 
 export const EditTransaction = ({ navigation, props }: any) => {
-    const URL_API = "http://192.168.91.203:3000"
+    // const URL_API = "http://192.168.91.203:3000"
+    const URL_API = "https://wise-spend-backend-2.vercel.app"
     const dispatch = useDispatch()
     const user_id = useSelector((state: any) => state.user.user_id)
     // const preData = useSelector((state: any) => state.predatatransaction.data)

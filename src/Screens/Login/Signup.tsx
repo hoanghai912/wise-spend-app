@@ -13,11 +13,13 @@ import { RootScreens } from "..";
 
 export const Signup = ({ navigation }: any) => {
     // const image = require('../../../assets/logo.svg');
+    // const URL_API = "http://192.168.91.203:3000"
+    const URL_API = "https://wise-spend-backend-2.vercel.app"
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const handleSignup = (email:string, password:string) => {
-        fetch("https://192.168.111.32:3000/user/signup", {
+        fetch(`${URL_API}/user/signup`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

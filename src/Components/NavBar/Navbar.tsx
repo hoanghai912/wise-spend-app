@@ -54,7 +54,7 @@ export const Navbar = ({navigation, screen}: any) => {
                         activeOpacity={1}    
                     >
                         {screen === "PlanScreen" ? <IconPlanActive /> : <IconPlan />}
-                        <Text style={[styles.mini_description, {...screen === "PlanScreen" ? {color: "#79B4B7"} : {}}]}>Share</Text>
+                        <Text style={[styles.mini_description, {...screen === "PlanScreen" ? {color: "#79B4B7"} : {}}]}>Plan</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity style={{alignItems:"center"}}

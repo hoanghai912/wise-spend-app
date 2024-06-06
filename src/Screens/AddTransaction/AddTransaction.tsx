@@ -26,7 +26,8 @@ import { add as addTransaction, replaceAllData } from "@/Store/reducers/transact
 
 
 export const AddTransaction = ({ navigation, props }: any) => {
-    const URL_API = "http://192.168.91.203:3000"
+    // const URL_API = "http://192.168.91.203:3000"
+    const URL_API = "https://wise-spend-backend-2.vercel.app"
     const dispatch = useDispatch()
     const user_id = useSelector((state: any) => state.user.user_id)
 

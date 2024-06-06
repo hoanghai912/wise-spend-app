@@ -46,7 +46,8 @@ const c_data_sample = [
   },
 ]
 export const HomeScreen = ({ navigation }: any) => {
-  const URL_API = "http://192.168.91.203:3000"
+  // const URL_API = "http://192.168.91.203:3000"
+  const URL_API = "https://wise-spend-backend-2.vercel.app"
   const [dataSample, setDataSample] = useState([])
   const transaction_data = useSelector((state: any) => state.transaction.data)
   const user_id = useSelector((state: any) => state.user.user_id)

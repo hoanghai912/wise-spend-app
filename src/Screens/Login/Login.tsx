@@ -13,6 +13,8 @@ import { useDispatch } from 'react-redux'
 import { addUserId } from "@/Store/reducers/user"
 
 export const Login = ({ navigation }: any) => {
+  // const URL_API = "http://192.168.91.203:3000"
+  const URL_API = "https://wise-spend-backend-2.vercel.app"
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
 
@@ -20,7 +22,7 @@ export const Login = ({ navigation }: any) => {
   
   const handleLogin = async (email:any, password:any) => {
 
-    fetch("http://192.168.91.203:3000/user/login", {
+    fetch(`${URL_API}/user/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
