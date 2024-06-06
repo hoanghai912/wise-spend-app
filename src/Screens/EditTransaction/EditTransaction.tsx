@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { StyleSheet, View, Text, StatusBar, TouchableOpacity, TextInput } from "react-native"
+import { StyleSheet, View, Text, StatusBar, TouchableOpacity, TextInput, Alert } from "react-native"
 
 import BracketWhite from "../../../assets/materials/bracket_white.svg"
 import BracketGray from "../../../assets/materials/bracket_gray.svg"
@@ -34,8 +34,8 @@ export const EditTransaction = ({ navigation, props }: any) => {
     // console.log(preData)
     // console.log(props)
     const [idTransaction, setIdTransaction] = useState(props._id.toString())
-    const [valueAmount, setValueAmount] = useState(props.amount? props.amount : 0)
-    const [note, setNote] = useState(props.description? props.description : "")
+    const [valueAmount, setValueAmount] = useState(props.amount ? props.amount : 0)
+    const [note, setNote] = useState(props.description ? props.description : "")
     const [category, setCategory] = useState('');
     useEffect(() => {
         if (props) setCategory(props.category)
@@ -174,7 +174,7 @@ export const EditTransaction = ({ navigation, props }: any) => {
                     // console.log(res)
                     // if (res.message === "successful") {
                     dispatch(updateTransaction(parameters[0]));
-                        
+
                     // }
                 })
 
@@ -182,13 +182,24 @@ export const EditTransaction = ({ navigation, props }: any) => {
         }
     }
 
-    const handleDelete = (_id:string) => {
-        fetch(`${URL_API}/transaction/${_id}`, {
-            method: "DELETE",
-        })
+    const handleDelete = (_id: string) => {
+        Alert.alert(
+            'CONFIRM', "Confirm to delete this transaction",
+            [{
+                text: 'Cancel',
+                onPress: () => null,
+                style: 'cancel',
+            },
+            { text: 'OK', onPress: () => {
+                fetch(`${URL_API}/transaction/${_id}`, {
+                    method: "DELETE",
+                })
         
-        dispatch(deleteTransaction({_id: _id}))
-        navigation.goBack()
+                dispatch(deleteTransaction({ _id: _id }))
+                navigation.goBack()
+            } }]
+        )
+        
 
     }
 
@@ -230,7 +241,7 @@ export const EditTransaction = ({ navigation, props }: any) => {
                         <Text className="color-white">Save</Text>
                     </TouchableOpacity>
 
-                    
+
                 </View>
             </View>
 
