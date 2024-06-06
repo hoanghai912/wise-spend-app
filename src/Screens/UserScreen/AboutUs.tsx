@@ -52,7 +52,7 @@ export const AboutUs = ({ navigation }: any) => {
 
 const styles = StyleSheet.create({
     container: {
-        paddingTop: StatusBar.currentHeight,
+        // paddingTop: StatusBar.currentHeight,
         flex: 1,
     },
     navbar: {

@@ -7843,7 +7843,7 @@ react-is@^18.0.0, react-is@^18.1.0:
 
 "react-native-calculator@https://github.com/RohithBhandaru/react-native-calculator.git":
   version "0.5.2"
-  resolved "git+ssh://git@github.com/RohithBhandaru/react-native-calculator.git#1a400fe4031d6b7577f4ca725ea1d4fcdf333492"
+  resolved "https://github.com/RohithBhandaru/react-native-calculator.git#1a400fe4031d6b7577f4ca725ea1d4fcdf333492"
 
 react-native-codegen@^0.71.5:
   version "0.71.5"

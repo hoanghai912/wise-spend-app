@@ -116,7 +116,7 @@ export const UserScreen = ({ navigation }: any) => {
 
 const style = StyleSheet.create({
   container: {
-    paddingTop: StatusBar.currentHeight,
+    // paddingTop: StatusBar.currentHeight,
     flex: 1,
   },
   navbar: {
