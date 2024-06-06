@@ -18,6 +18,7 @@ import { EditTransactionContainer } from "@/Screens/EditTransaction";
 import { EditProfile } from "@/Screens/UserScreen/EditProfile";
 import { ChangePassword } from "@/Screens/UserScreen/ChangePassword";
 import { AboutUs } from "@/Screens/UserScreen/AboutUs";
+import { TrueOnboarding } from "@/Screens/Onboarding/TrueOnboarding";
 
 export type RootStackParamList = {
   [RootScreens.MAIN]: undefined;
@@ -35,6 +36,7 @@ export type RootStackParamList = {
   [RootScreens.EDITPROFILE]: undefined;
   [RootScreens.CHANGEPASSWORD]: undefined;
   [RootScreens.ABOUTUS]: undefined;
+  [RootScreens.TRUEONBOARDING]: undefined;
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -45,6 +47,10 @@ const ApplicationNavigator = () => {
     <NavigationContainer>
       <StatusBar />
       <RootStack.Navigator screenOptions={{ headerShown: false }}>
+        <RootStack.Screen 
+          name={RootScreens.TRUEONBOARDING}
+          component={TrueOnboarding}
+        />
         <RootStack.Screen
           name={RootScreens.WELCOME}
           component={WelcomeContainer}
@@ -130,6 +136,7 @@ const ApplicationNavigator = () => {
           name={RootScreens.ABOUTUS}
           component={AboutUs}
         />
+        
 
       </RootStack.Navigator>
     </NavigationContainer>

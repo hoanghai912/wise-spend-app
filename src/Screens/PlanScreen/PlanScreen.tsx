@@ -3,13 +3,13 @@ import { StyleSheet, View, Text } from "react-native"
 
 import { Navbar } from "@/Components"
 
+import PlanImg from "../../../assets/materials/Plan.svg"
+
 export const PlanScreen = ({ navigation }: any) => {
 
   return (
     <View style={style.container}>
-      <Text>
-        PlanScreen
-      </Text>
+      <PlanImg />
 
       <View style={style.navbar}>
 
@@ -22,7 +22,6 @@ export const PlanScreen = ({ navigation }: any) => {
 
 const style = StyleSheet.create({
   container: {
-    paddingTop: 44,
     flex: 1,
   },
   navbar: {

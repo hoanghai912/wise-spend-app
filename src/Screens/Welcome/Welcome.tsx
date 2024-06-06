@@ -15,7 +15,7 @@ export const Welcome = (props: {
       <Button onPress={() => props.onNavigate(RootScreens.MAIN)}>
         {i18n.t(LocalizationKey.START)}
       </Button>
-      <Button onPress={() => props.onNavigate(RootScreens.ONBOARDING)}>
+      <Button onPress={() => props.onNavigate(RootScreens.TRUEONBOARDING)}>
         OnboardingScreen
       </Button>
     </View>
