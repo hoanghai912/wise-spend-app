@@ -15,6 +15,9 @@ import { AddTransactionContainer } from "@/Screens/AddTransaction";
 import { ChooseCategory } from "@/Screens/AddTransaction/ChooseCategory";
 import { ChooseCategory as EditChooseCategory } from "@/Screens/EditTransaction/ChooseCategory";
 import { EditTransactionContainer } from "@/Screens/EditTransaction";
+import { EditProfile } from "@/Screens/UserScreen/EditProfile";
+import { ChangePassword } from "@/Screens/UserScreen/ChangePassword";
+import { AboutUs } from "@/Screens/UserScreen/AboutUs";
 
 export type RootStackParamList = {
   [RootScreens.MAIN]: undefined;
@@ -29,6 +32,9 @@ export type RootStackParamList = {
   [RootScreens.CHOOSECATEGORY]: undefined;
   [RootScreens.EDITTRANSACTION]: undefined;
   [RootScreens.EDITCHOOSECATEGORY]: undefined;
+  [RootScreens.EDITPROFILE]: undefined;
+  [RootScreens.CHANGEPASSWORD]: undefined;
+  [RootScreens.ABOUTUS]: undefined;
 };
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -111,6 +117,18 @@ const ApplicationNavigator = () => {
           options={{
             animation:"slide_from_right",
           }}
+        />
+        <RootStack.Screen 
+          name={RootScreens.EDITPROFILE}
+          component={EditProfile}
+        />
+        <RootStack.Screen 
+          name={RootScreens.CHANGEPASSWORD}
+          component={ChangePassword}
+        />
+        <RootStack.Screen 
+          name={RootScreens.ABOUTUS}
+          component={AboutUs}
         />
 
       </RootStack.Navigator>

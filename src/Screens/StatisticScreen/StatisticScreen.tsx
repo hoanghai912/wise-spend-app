@@ -178,7 +178,7 @@ export const StatisticScreen = ({ navigation }: any) => {
       <View className="bg-[#79B4B7] h-[50%] items-center justify-center">
         <Text className="text-white font-medium pb-[30]" style={{ fontSize: 20 }}>Statistics</Text>
         
-        {data_chart.length > 0 && <PieChart
+        {data_sample.length > 0 && data_chart.length > 0 && <PieChart
           widthAndHeight={widthAndHeight}
           series={data_chart}
           sliceColor={color_chart}

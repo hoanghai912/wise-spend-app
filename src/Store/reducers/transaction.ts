@@ -20,10 +20,13 @@ const slice = createSlice({
     },
     replaceAllData: (state:any, { payload: props  }) => {
       state.data = props
+    },
+    resetTransactionState: (state:any) => {
+      state.data = []
     }
   },
 });
 
-export const { add, updateTransaction, deleteTransaction, replaceAllData } = slice.actions;
+export const { add, updateTransaction, deleteTransaction, replaceAllData, resetTransactionState } = slice.actions;
 
 export const transactionReducers = slice.reducer;
